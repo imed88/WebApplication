@@ -18,7 +18,7 @@ namespace WebApps.Models
     public partial class nurses
     {
         
-        public nurses()
+        public ()
         {
             this.patients = new HashSet<patients>();
         }
