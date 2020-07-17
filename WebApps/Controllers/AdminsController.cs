@@ -6,25 +6,31 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebApps.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApps.Controllers
 {
     public class AdminsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IdentityAppContext _context;
 
-        public AdminsController(ApplicationDbContext context)
+        public AdminsController(IdentityAppContext context)
         {
             _context = context;
         }
 
         // GET: Admins
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.admins.ToListAsync());
         }
 
         // GET: Admins/Details/5
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,6 +49,7 @@ namespace WebApps.Controllers
         }
 
         // GET: Admins/Create
+        [Authorize(Roles = "Admin,User")]
         public IActionResult Create()
         {
             return View();
@@ -51,6 +58,7 @@ namespace WebApps.Controllers
         // POST: Admins/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin,User")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("idAdmin,nameAdmin,emailAdmin,passwordAdmin,phoneAdmin,Created")] Admins admins)
@@ -65,6 +73,7 @@ namespace WebApps.Controllers
         }
 
         // GET: Admins/Edit/5
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -83,6 +92,7 @@ namespace WebApps.Controllers
         // POST: Admins/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin,User")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("idAdmin,nameAdmin,emailAdmin,passwordAdmin,phoneAdmin,Created")] Admins admins)
@@ -116,6 +126,7 @@ namespace WebApps.Controllers
         }
 
         // GET: Admins/Delete/5
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,6 +145,7 @@ namespace WebApps.Controllers
         }
 
         // POST: Admins/Delete/5
+        [Authorize(Roles = "Admin,User")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -143,10 +155,15 @@ namespace WebApps.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        [Authorize(Roles = "Admin,User")]
         private bool AdminsExists(int id)
         {
             return _context.admins.Any(e => e.idAdmin == id);
         }
+
+
+       
+
+
     }
 }

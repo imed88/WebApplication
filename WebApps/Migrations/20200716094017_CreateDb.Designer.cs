@@ -10,7 +10,7 @@ using WebApps.Models;
 
 namespace WebApps.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(IdentityAppContext))]
     [Migration("20200716094017_CreateDb")]
     partial class CreateDb
     {

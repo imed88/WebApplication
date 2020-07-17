@@ -8,5 +8,6 @@ namespace WebApps.Models
 {
     public class AppRole:IdentityRole<int>
     {
+
     }
 }

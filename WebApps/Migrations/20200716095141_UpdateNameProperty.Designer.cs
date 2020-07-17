@@ -10,7 +10,7 @@ using WebApps.Models;
 
 namespace WebApps.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(IdentityAppContext))]
     [Migration("20200716095141_UpdateNameProperty")]
     partial class UpdateNameProperty
     {

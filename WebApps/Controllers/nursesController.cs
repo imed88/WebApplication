@@ -11,9 +11,9 @@ namespace WebApps.Controllers
 {
     public class nursesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IdentityAppContext _context;
 
-        public nursesController(ApplicationDbContext context)
+        public nursesController(IdentityAppContext context)
         {
             _context = context;
         }

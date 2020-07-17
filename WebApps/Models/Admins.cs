@@ -9,12 +9,13 @@
 
 namespace WebApps.Models
 {
+    using Microsoft.AspNetCore.Identity;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class Admins
+    public partial class Admins:IdentityUser<int>
     {
         [Key]
         public int idAdmin { get; set; }

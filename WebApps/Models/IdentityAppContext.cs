@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace WebApps.Models
 {
-    public class ApplicationDbContext : DbContext
+    public class IdentityAppContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        public IdentityAppContext(DbContextOptions<IdentityAppContext> options) : base(options)
         {
         }
 
